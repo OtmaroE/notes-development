@@ -25,7 +25,7 @@ Use the `env.example` file to create your own `.env` file. For out-of-the-box lo
 # Seeding the back-end
 
 The back-end doesn't automatically seed the base users and data to local testing.  
-To seed them run:
+To run them run the following comand once the api container is runing and healthy:
 ```
 docker exec notes-api npm run db:seed
 ```
