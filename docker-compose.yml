@@ -1,0 +1,47 @@
+
+services:
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:10
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /data/postgres
+    ports:
+      - "${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}"
+    healthcheck:
+      test: pg_isready -h localhost -U postgres
+      start_period: 10s
+  notes-api:
+    container_name: notes-api
+    restart: always
+    image: notes-api
+    build:
+      context: ./notes-api
+      dockerfile: Dockerfile.local
+    env_file:
+      - .env
+    ports:
+      - "${SERVER_PORT:-3030}:${SERVER_PORT:-3030}"
+      - "${DEBUG_SERVER_PORT:-9229}:${DEBUG_SERVER_PORT:-9229}"
+    volumes:
+      - ./notes-api/server:${WORKDIR:-/user/src/app}/server
+    links:
+      - postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+  notes-web:
+    container_name: notes-web
+    restart: always
+    image: notes-web
+    build:
+      context: ./notes-web/
+      dockerfile: Dockerfile.local
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    volumes:
+      - ./notes-api/server:${WORKDIR:-/user/src/app}/server

@@ -1,0 +1,6 @@
+[submodule "notes-api"]
+	path = notes-api
+	url = git@github.com:OtmaroE/notes-api.git
+[submodule "notes-web"]
+	path = notes-web
+	url = git@github.com:OtmaroE/notes-web.git
