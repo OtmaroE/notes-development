@@ -44,4 +44,4 @@ services:
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     volumes:
-      - ./notes-api/server:${WORKDIR:-/user/src/app}/server
+      - ./notes-web/src:${WORKDIR:-/user/src/app}/src
