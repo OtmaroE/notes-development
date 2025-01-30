@@ -7,6 +7,13 @@ This repository contains a docker-compose.yml file that will setup three contain
 
 This repo has both notes-api and notes-website as sub-modules.
 
+# Clone recursively
+To run locally you must also have the code for each internal repository.  
+To clone recursively, please run:
+```
+git clone --recurse-submodules git@github.com:OtmaroE/notes-development.git
+```
+
 # Commands.
 1. To run all containers and attach to their output.
 ```
