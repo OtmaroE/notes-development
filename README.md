@@ -27,7 +27,7 @@ docker compose up -d
 
 # Environment variables.
 
-Use the `env.example` file to create your own `.env` file. For out-of-the-box local development, just copy/paste existing example into an `.env` file.
+Currently this repo provides an `.env` file with values already configured to be plug-and-play. Change it in you need to run the apps in different ports.
 
 # Seeding the back-end
 
